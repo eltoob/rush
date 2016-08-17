@@ -25,53 +25,53 @@ Or install it yourself as:
 
 
 ### Authentication
-
-    Rush.configure do |config|
-      config.client_secret = "client_secret"
-      config.client_id = "client_id"
-      config.server_token = "server_token"
-      config.sandbox = true
-    end
-
+```ruby
+Rush.configure do |config|
+  config.client_secret = "client_secret"
+  config.client_id = "client_id"
+  config.server_token = "server_token"
+  config.sandbox = true
+end
+```
 ### Fetch deliveries
-
-    client = Rush::Client.new
-    client.fetch_deliveries
-
+```ruby
+client = Rush::Client.new
+client.fetch_deliveries
+```
 ### Get a quote
 
 ### Order a delivery
+```ruby
+client = Rush::Client.new
+client.fetch_deliveries
 
-    client = Rush::Client.new
-    client.fetch_deliveries
+location = { address: '636 w 28th street',
+             city: 'New York',
+             state: 'NY',
+             postal_code: '10014',
+             country: 'US'}
+contact = {
+  first_name: 'Tester',
+  last_name: 'Mctestie',
+  phone: {number: '+14214214211'}
+}
 
-    location = { address: '636 w 28th street',
-                 city: 'New York',
-                 state: 'NY',
-                 postal_code: '10014',
-                 country: 'US'}
+signature_required = false
+pickup = Rush::PickUp.new(location: location, contact: contact, signature_required: signature_required)
+dropoff = Rush::DropOff.new(location: location, contact: contact, signature_required: signature_required)
+items = [{title: 'Chocolate bar', quantity: 1, is_fragile: true}]
+client.create_delivery(items, pickup, dropoff)
+    location = { address: '64 Seabring St',
+             city: 'Brooklyn',
+             state: 'NY',
+             postal_code: '11231',
+             country: 'US'}
     contact = {
-      first_name: 'Tester',
+      first_name: 'tester',
       last_name: 'Mctestie',
       phone: {number: '+14214214211'}
     }
-
-    signature_required = false
-    pickup = Rush::PickUp.new(location: location, contact: contact, signature_required: signature_required)
-    dropoff = Rush::DropOff.new(location: location, contact: contact, signature_required: signature_required)
-    items = [{title: 'Chocolate bar', quantity: 1, is_fragile: true}]
-    client.create_delivery(items, pickup, dropoff)
-        location = { address: '64 Seabring St',
-                 city: 'Brooklyn',
-                 state: 'NY',
-                 postal_code: '11231',
-                 country: 'US'}
-        contact = {
-          first_name: 'tester',
-          last_name: 'Mctestie',
-          phone: {number: '+14214214211'}
-        }
-
+```
 
 
 
