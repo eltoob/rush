@@ -1,5 +1,4 @@
 require 'httparty'
-require 'pry'
 module Rush
 
   class Client
@@ -61,7 +60,7 @@ module Rush
       response = HTTParty.get(api_uri + 'deliveries?offset=' + offset.to_s, headers: { "Authorization" => "Bearer #{access_token}"})
       # Transforms json into a hash
       result = response.parsed_response["deliveries"].map {|p| p.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}}
-      binding.pry
+
       return result.map{|s| Delivery.new(s)}
     end
 
