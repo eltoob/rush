@@ -32,6 +32,8 @@ module Rush
       end
     end
 
+    private
+
     def _raw_options
       Hash[ * VALID_CONNECTION_KEYS.map { |key| [key, send(key)] }.flatten ]
     end

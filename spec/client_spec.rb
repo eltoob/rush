@@ -11,7 +11,6 @@ describe Rush do
       it "overrides the default configuration" do
         Rush.configure do |config|
           config.client_id = "client_id"
-          config.sandbox = true
           config.access_token = "access_token"
         end
         client = Rush::Client.new(client_id: "other_client_id")
