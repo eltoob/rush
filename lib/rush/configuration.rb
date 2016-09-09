@@ -1,6 +1,6 @@
 module Rush
   module Configuration
-    VALID_CONNECTION_KEYS = ['client_secret', 'client_id', 'sandbox', 'server_token', 'access_token'].freeze
+    VALID_CONNECTION_KEYS = [:client_secret, :client_id, :sandbox, :server_token, :access_token].freeze
     DEFAULT_CLIENT_SECRET = nil
     DEFAULT_CLIENT_ID = nil
     DEFAULT_SANDBOX = true
@@ -25,6 +25,16 @@ module Rush
     end
 
     def options
+      {}.tap do |symbol_options|
+        _raw_options.each do |key, value|
+          symbol_options[key.to_sym] = value
+        end
+      end
+    end
+
+    private
+
+    def _raw_options
       Hash[ * VALID_CONNECTION_KEYS.map { |key| [key, send(key)] }.flatten ]
     end
   end

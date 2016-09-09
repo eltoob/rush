@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe Rush do
   describe "configuration" do
@@ -32,7 +31,6 @@ describe Rush do
         expect(Rush.client_id).to eq "client_id"
         expect(Rush.client_secret).to eq "client_secret"
         expect(Rush.sandbox).to eq true
-
       end
     end
   end

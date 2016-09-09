@@ -15,6 +15,7 @@ describe Rush do
 
     describe "quote" do
       it 'sends a request to quote the delivery and returns the correct value' do
+        skip
         client = Rush::Client.new(client_id: "PVHwWxeFnsR-BsSr3BkqDYJNzSj6zTeo", client_secret: "I8-1rOtKfz7iB0YV2Zzm7ZT13PHk2U0i74CFHDMz", sandbox: true)
         delivery = Rush::Delivery.new(client: client, items: 2, pickup: 3, dropoff: 4)
         delivery.quote
