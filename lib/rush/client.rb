@@ -25,7 +25,6 @@ module Rush
       return self if access_token
       data = {client_secret: client_secret,
               client_id: client_id,
-              server_token: server_token,
               grant_type: 'client_credentials',
               scope: sandbox ? 'delivery_sandbox' : ''
       }
