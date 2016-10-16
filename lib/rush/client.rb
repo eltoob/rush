@@ -1,9 +1,7 @@
 require 'httparty'
 
 module Rush
-
   class Client
-
     OAUTH_URI = 'https://login.uber.com/oauth/v2/token'
     attr_accessor *Configuration::VALID_CONNECTION_KEYS
 
@@ -15,8 +13,8 @@ module Rush
       Configuration::VALID_CONNECTION_KEYS.each do |key|
         send("#{key}=", merged_options[key])
       end
-      get_access_token
 
+      get_access_token
     end
 
     def api_uri
@@ -53,8 +51,9 @@ module Rush
     end
 
     def get_quotes(pickup, dropoff)
-      body = {pickup: pickup, dropoff: dropoff}
-      response = HTTParty.post(api_uri + 'deliveries/quote', body: body, headers: { "Authorization" => "Bearer #{access_token}"})
+      body = {pickup: pickup.to_json, dropoff: dropoff.to_json}.to_json
+
+      HTTParty.post(api_uri + 'deliveries/quote', body: body, headers: { "Authorization" => "Bearer #{access_token}", "Content-Type" => "application/json"})
     end
 
     def fetch_deliveries(offset=0)
@@ -69,8 +68,8 @@ module Rush
       response = HTTParty.get(api_uri + 'deliveries/' + id.to_s, headers: { "Authorization" => "Bearer #{access_token}"})
       # Transforms json into a hash
       result = response.parsed_response.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-      return Delivery.new(result)
 
+      return Delivery.new(result)
     end
   end
 end
