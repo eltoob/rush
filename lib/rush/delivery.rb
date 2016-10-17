@@ -2,12 +2,14 @@ require 'httparty'
 
 module Rush
   class Delivery
-    attr_accessor :client, :items, :pickup, :dropoff
+    attr_accessor :client, :items, :pickup, :dropoff, :status, :id
     def initialize(opts)
       @client = opts[:client]
       @items = opts[:items]
       @pickup = opts[:pickup]
       @dropoff = opts[:dropoff]
+      @status = opts[:status]
+      @id = opts[:delivery_id]
     end
 
     def quote

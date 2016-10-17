@@ -5,11 +5,13 @@ describe Rush do
 
     describe "new" do
       it 'sets up the right values' do
-        delivery = Rush::Delivery.new(client: 1, items: 2, pickup: 3, dropoff: 4)
+        delivery = Rush::Delivery.new(client: 1, items: 2, pickup: 3, dropoff: 4, delivery_id: "abc123", status: "processing")
         expect(delivery.client).to eq 1
         expect(delivery.items).to eq 2
         expect(delivery.pickup).to eq 3
         expect(delivery.dropoff).to eq 4
+        expect(delivery.id).to eq "abc123"
+        expect(delivery.status).to eq "processing"
       end
     end
 
