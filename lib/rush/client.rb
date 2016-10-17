@@ -72,5 +72,11 @@ module Rush
       return Delivery.new(result)
 
     end
+
+    def cancel_delivery(id)
+      response = HTTParty.post(api_uri + "deliveries/#{id}/cancel", headers: { "Authorization" => "Bearer #{access_token}"})
+
+      return response.success?
+    end
   end
 end
