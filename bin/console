@@ -7,8 +7,12 @@ require "rush"
 # with your gem easier. You can also use a different console, if you like.
 
 # (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
 
-require "irb"
-IRB.start
+Rush.configure do |config|
+  config.client_id = "client_id"
+  config.client_secret = "client_secret"
+  config.sandbox = true
+end
+
+require "pry"
+Pry.start
