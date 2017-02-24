@@ -27,7 +27,7 @@ module Rush
               client_id: client_id,
               server_token: server_token,
               grant_type: 'client_credentials',
-              scope: sandbox ? 'delivery_sandbox' : ''
+              scope: sandbox ? 'delivery_sandbox' : 'delivery'
       }
       response = HTTParty.post(OAUTH_URI, body: data)
       if response.success?
