@@ -26,7 +26,6 @@ Or install it yourself as:
 Rush.configure do |config|
   config.client_id = "client_id"
   config.client_secret = "client_secret"
-  config.server_token = "server_token"
   config.sandbox = true
 end
 ```

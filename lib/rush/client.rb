@@ -25,9 +25,8 @@ module Rush
       return self if access_token
       data = {client_secret: client_secret,
               client_id: client_id,
-              server_token: server_token,
               grant_type: 'client_credentials',
-              scope: sandbox ? 'delivery_sandbox' : ''
+              scope: sandbox ? 'delivery_sandbox' : 'delivery'
       }
       response = HTTParty.post(OAUTH_URI, body: data)
       if response.success?
@@ -66,6 +65,9 @@ module Rush
 
     def find_delivery(id)
       response = HTTParty.get(api_uri + 'deliveries/' + id.to_s, headers: { "Authorization" => "Bearer #{access_token}"})
+      
+      raise(response.parsed_response) unless response.success?
+      
       # Transforms json into a hash
       result = response.parsed_response.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
