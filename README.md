@@ -8,7 +8,7 @@ For more information about the Rush API, please visit: https://developer.uber.co
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rush'
+gem 'rush', git: 'git://github.com/eltoob/rush.git'
 ```
 
 And then execute:
